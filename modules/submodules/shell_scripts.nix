@@ -1,17 +1,17 @@
 { pkgs }:
 
 {
-    tms = pkgs.writeShellScriptBin "tms" ''
+  tms = pkgs.writeShellScriptBin "tms" ''
         set -euo pipefail
 
         export PATH=${
-            pkgs.lib.makeBinPath [
-                pkgs.fzf
-                    pkgs.fd
-                    pkgs.tmux
-                    pkgs.gnused
-                    pkgs.coreutils
-            ]
+          pkgs.lib.makeBinPath [
+            pkgs.fzf
+            pkgs.fd
+            pkgs.tmux
+            pkgs.gnused
+            pkgs.coreutils
+          ]
         }:$PATH
 
     DIRS=(
@@ -48,5 +48,5 @@
                                 else
                                     tmux switch-client -t "$selected_name"
                                         fi
-                                        '';
+  '';
 }

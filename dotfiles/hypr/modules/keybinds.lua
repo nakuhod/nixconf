@@ -2,7 +2,6 @@
 --- columns
 hl.bind(main_mod .. " + F", hl.dsp.layout("colresize 1"))
 hl.bind(main_mod .. " + SHIFT + V", hl.dsp.layout("colresize 0.5"))
-hl.bind(main_mod .. " + M", hl.dsp.layout("swapwithmaster master"))
 
 hl.bind(main_mod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }))
 hl.bind(main_mod .. " + V", hl.dsp.window.float({ action = "toggle" }))
@@ -12,7 +11,7 @@ hl.bind(main_mod .. " + C", hl.dsp.window.close())
 -- exec_cmd keybindings
 hl.bind(main_mod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(main_mod .. " + B", hl.dsp.exec_cmd(browser))
-hl.bind(main_mod .. " + D", hl.dsp.exec_cmd(fileManager))
+hl.bind(main_mod .. " + D", hl.dsp.exec_cmd(file_manager))
 hl.bind(main_mod .. " + E", hl.dsp.exec_cmd(emacs))
 hl.bind(main_mod .. " + slash", hl.dsp.exec_cmd(clipboard_panel))
 hl.bind(main_mod .. " + SPACE", hl.dsp.exec_cmd(app_launcher))
@@ -30,16 +29,28 @@ hl.bind(main_mod .. " + SHIFT + J", hl.dsp.window.move({ direction = "down" }))
 hl.bind(main_mod .. " + SHIFT + K", hl.dsp.window.move({ direction = "up" }))
 hl.bind(main_mod .. " + SHIFT + L", hl.dsp.window.move({ direction = "right" }))
 
---- Swap columns (swaps columns and focuses inactive window.Very janky solution
---- and does not support wrapped columns but good for dynamic border colors)
-
+--- Swap columns and notify
 hl.bind(main_mod .. " + comma", function()
     hl.dispatch(hl.dsp.layout("swapcol l"))
-    hl.dispatch(hl.dsp.focus({ direction = "right" }))
+    local active_window = hl.get_active_window()
+    if active_window ~= nil then
+        hl.notification.create({
+            text = active_window.class .. " ⬅️",
+            timeout = 2000,
+            icon = "info"
+        })
+    end
 end)
 hl.bind(main_mod .. " + period", function()
     hl.dispatch(hl.dsp.layout("swapcol r"))
-    hl.dispatch(hl.dsp.focus({ direction = "left" }))
+    local active_window = hl.get_active_window()
+    if active_window ~= nil then
+        hl.notification.create({
+            text = active_window.class .. " ➡️",
+            timeout = 2000,
+            icon = "info"
+        })
+    end
 end)
 
 
@@ -54,6 +65,12 @@ end
 hl.workspace_rule({ workspace = "special:terminalScratchpad", on_created_empty = created_on_empty_terminal })
 hl.bind(main_mod .. " + S", hl.dsp.workspace.toggle_special("terminalScratchpad"))
 hl.bind(main_mod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:terminalScratchpad" }))
+
+hl.on("window.open", function(w)
+    if w.class == "footclient_created_on_empty" then
+        hl.dsp.focus({ window = w })
+    end
+end)
 
 -- Move/resize windows with main_mod + LMB/RMB and dragging
 hl.bind(main_mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
@@ -84,14 +101,6 @@ hl.bind(main_mod .. " + Up", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SI
 hl.bind(main_mod .. " + Down", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
     { locked = true, repeating = true })
 hl.bind(main_mod .. " + P", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-
---- Tomato Timer Shortcuts
-hl.bind(main_mod .. " + F10",
-    hl.dsp.send_shortcut({ mods = "", key = "P", window = "title:^(tomato)$" })
-) -- Send P to tomato timer when SUPER + F10 is pressed. Stops timer
-hl.bind(main_mod .. " + F8",
-    hl.dsp.send_shortcut({ mods = "", key = "S", window = "title:^(tomato)$" })
-) -- Send S to tomato timer when SUPER + F10 is pressed. Skips break or remaining time
 
 --- Zoom
 local MAX_ZOOM = 3

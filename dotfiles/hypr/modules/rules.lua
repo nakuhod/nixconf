@@ -1,12 +1,12 @@
 hl.layer_rule({
-  name = "noctalia",
-  match = {
-    namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$",
-  },
-  no_anim = true,
-  ignore_alpha = 0.5,
-  blur = true,
-  blur_popups = true,
+    name = "noctalia",
+    match = {
+        namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$",
+    },
+    no_anim = true,
+    ignore_alpha = 0.5,
+    blur = true,
+    blur_popups = true,
 })
 
 hl.window_rule({
@@ -16,6 +16,7 @@ hl.window_rule({
     },
     opacity = "0.6 override 0.5 override 0.4 override"
 })
+
 
 hl.window_rule({
     name = "Handle on_created_empty behavior",

@@ -1,5 +1,5 @@
 return {
-    cmd = { 'nil' },
+    cmd = { 'nixd' },
     filetypes = {
         "nix"
     },

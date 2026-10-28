@@ -1,15 +1,20 @@
-{ config, pkgs,lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
 
   hardware.graphics = {
-      enable = true;
-      enable32Bit = true;
-      extraPackages = with pkgs; [
-          libva-vdpau-driver
-              libvdpau-va-gl
-              nvidia-vaapi-driver
-      ];
+    enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [
+      libva-vdpau-driver
+      libvdpau-va-gl
+      nvidia-vaapi-driver
+    ];
   };
   hardware.cpu.intel.updateMicrocode = true;
 

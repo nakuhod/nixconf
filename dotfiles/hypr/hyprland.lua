@@ -6,7 +6,7 @@ terminal = "footclient"
 created_on_empty_terminal = "footclient --app-id=footclient_created_on_empty"
 app_launcher = noctalia_ipc .. "panel-toggle launcher"
 clipboard_panel = noctalia_ipc .. "panel-toggle clipboard"
-fileManager = "thunar"
+file_manager = "thunar"
 emacs = "emacsclient -c -a ''"
 
 require("modules.autostart")

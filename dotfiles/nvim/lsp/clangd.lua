@@ -4,6 +4,7 @@ return {
     },
     root_markers = {
         '.clangd',
+        'Makefile',
         'compile_commands.json',
     },
     filetypes = {

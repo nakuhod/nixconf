@@ -1,10 +1,11 @@
--- set common commands case insensitive
+-- set common commands alias
 vim.api.nvim_create_user_command("W", "w", { nargs = 0 })
 vim.api.nvim_create_user_command("Q", "q", { nargs = 0 })
 vim.api.nvim_create_user_command("WQ", "wq", { nargs = 0 })
 vim.api.nvim_create_user_command("Wq", "wq", { nargs = 0 })
 vim.api.nvim_create_user_command("WA", "wa", { nargs = 0 })
 vim.api.nvim_create_user_command("Wa", "wa", { nargs = 0 })
+vim.api.nvim_create_user_command("A", "Alpha", { nargs = 0 })
 
 -- Set leader key
 vim.g.mapleader = " "
@@ -56,6 +57,19 @@ end, { desc = "Copy diagnostic message" })
 -- Select all file
 vim.keymap.set("n", "vga", "ggVG", opts)
 
+for _, mark in ipairs({
+  "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+  "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
+  "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+  "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+}) do
+  vim.keymap.set("n", "m" .. mark, function()
+    vim.cmd("normal! m" .. mark)
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
+    print(("Mark %s set in %s at position %d,%d"):format(mark,filename, row, col + 1))
+  end)
+end
 
 -- Copy file path with line number into clipboard
 vim.keymap.set('n', '<leader>n', function()
