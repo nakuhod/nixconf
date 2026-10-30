@@ -19,6 +19,7 @@
 
   environment.systemPackages = with pkgs; [
     awww
+    blanket
     brave
     burpsuite
     gimp

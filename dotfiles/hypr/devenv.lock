@@ -17,22 +17,6 @@
         "type": "github"
       }
     },
-    "nixconf": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1784138192,
-        "narHash": "sha256-r6Mjp0T1aPatOpNKDxAnhS3csuBuLRBShT2f795NGGE=",
-        "owner": "dykaya0",
-        "repo": "nixconf",
-        "rev": "53caf9914960dc508bbdad9aac0618705024cd51",
-        "type": "github"
-      },
-      "original": {
-        "owner": "dykaya0",
-        "repo": "nixconf",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "inputs": {
         "nixpkgs-src": "nixpkgs-src"
@@ -72,7 +56,6 @@
     "root": {
       "inputs": {
         "devenv": "devenv",
-        "nixconf": "nixconf",
         "nixpkgs": "nixpkgs"
       }
     }

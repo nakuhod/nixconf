@@ -7,6 +7,5 @@
 }:
 
 {
-  env.GREET = "lua";
   languages.lua.enable = true;
 }

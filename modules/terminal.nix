@@ -12,8 +12,8 @@ in
     theme = "poimandres";
     settings = {
       main = {
-        font = "CaskaydiaMono Nerd Font:size=15";
-        dpi-aware = "yes";
+        font = "CaskaydiaMono Nerd Font:size=13";
+        dpi-aware = "no";
         term = "xterm-256color";
       };
       scrollback = {

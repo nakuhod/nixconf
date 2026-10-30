@@ -17,7 +17,7 @@
     DIRS=(
             "$HOME/projects/personal"
             "$HOME/projects/work"
-            "$HOME/projects/forked"
+            "$HOME/projects/clone"
             "$HOME/projects/meta"
          )
 

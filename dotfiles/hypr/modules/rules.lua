@@ -10,11 +10,12 @@ hl.layer_rule({
 })
 
 hl.window_rule({
-    name = "TransparentSpecialWorkspace",
+    name = "TerminalScratchpad",
     match = {
         workspace = "special:terminalScratchpad"
     },
-    opacity = "0.6 override 0.5 override 0.4 override"
+    opacity = "0.6 override 0.5 override 0.4 override",
+    focus_on_activate = true
 })
 
 

@@ -110,7 +110,7 @@
         "sidebar.verticalTabs" = true;
         "general.autoScroll" = true;
         "layout.css.prefers-color-scheme.content-override" = 0;
-        "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
+        "extensions.activeThemeID" = "nova-ash@mozilla.org";
         "full-screen-api.warning.timeout" = 0;
         "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
         "browser.toolbars.bookmarks.visibility" = "always";
