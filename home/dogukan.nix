@@ -12,7 +12,6 @@ let
     ghostty = "ghostty";
     hypr = "hypr";
     nvim = "nvim";
-    tmux = "tmux";
     noctalia = "noctalia";
   };
 in
@@ -26,6 +25,13 @@ in
 
   programs.firefox.enable = true;
   programs.neovim.defaultEditor = true;
+  programs.tmux = {
+    enable = true;
+    plugins = [ pkgs.tmuxPlugins.resurrect ];
+    extraConfig = ''
+      source-file "${dotfiles}/tmux/config.conf"
+    '';
+  };
 
   xdg.configFile = builtins.mapAttrs (name: subpath: {
     source = create_symlink "${dotfiles}/${subpath}/";
@@ -38,7 +44,6 @@ in
     gnumake
     neovim
     ripgrep
-    tmux
   ];
 
 }

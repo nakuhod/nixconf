@@ -39,7 +39,7 @@ return {
         }
 
         dashboard.section.footer.val = function()
-            return " 󰻀 "
+            return "  "
         end
 
         dashboard.section.buttons.opts.hl = "Keyword"

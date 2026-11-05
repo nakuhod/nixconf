@@ -44,6 +44,7 @@ in
     pure-prompt
     rsync
     shell_scripts.tms
+    shell_scripts.tmux-resurrect-pwd
     tealdeer
     texliveFull
     unzip

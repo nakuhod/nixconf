@@ -4,6 +4,7 @@ return {
     },
     root_markers = {
         '.clangd',
+        'meson.build',
         'Makefile',
         'compile_commands.json',
     },

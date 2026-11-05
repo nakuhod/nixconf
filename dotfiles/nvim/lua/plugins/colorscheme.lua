@@ -1,9 +1,9 @@
 return {
-    "rose-pine/neovim",
+    "oskarnurm/koda.nvim",
     lazy = false,
     priority = 1000,
-    name = "rose-pine",
     config = function()
-        vim.cmd("colorscheme rose-pine")
+        vim.cmd("colorscheme koda-dark")
     end,
+
 }

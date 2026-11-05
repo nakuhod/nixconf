@@ -49,4 +49,35 @@
                                     tmux switch-client -t "$selected_name"
                                         fi
   '';
+  tmux-resurrect-pwd = pkgs.writeShellScriptBin "tmux-resurrect-pwd" ''
+    set -euo pipefail
+
+    export PATH=${
+      pkgs.lib.makeBinPath [
+        pkgs.coreutils
+        pkgs.gnugrep
+        pkgs.findutils
+      ]
+    }:$PATH
+
+    resurrect_dir="$HOME/.tmux/resurrect"
+    target="$resurrect_dir/last"
+    selected_path=$(realpath "''${1:?Missing project path}")
+
+    [[ -d "$resurrect_dir" ]] || exit 0
+
+    newest_file=$(
+      find "$resurrect_dir" -maxdepth 1 -type f -name 'tmux_resurrect_*.txt' \
+        -exec grep -lF -- "$selected_path" {} + |
+        xargs -r ls -t |
+        head -n1
+    ) || true
+
+    if [[ -z "$newest_file" ]]; then
+      echo "No matching Resurrect save found for: $selected_path" >&2
+      exit 1
+    fi
+
+    ln -sfn "$newest_file" "$target"
+  '';
 }

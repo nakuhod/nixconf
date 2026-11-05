@@ -333,69 +333,31 @@
              ;; Org Capure Templates
              (setq org-capture-templates
                    '(
-                     ("t" "Todo" entry (file (lambda () (concat org-directory "/refile.org")))
-                      "* TODO %?\nDEADLINE: %T\n")
-
-                     ("c" "content")
-                     ("cm" "movie" entry
-                      (file+headline (lambda () (concat org-directory "/content.org")) "Film")
-                      "* BACK %? :movie:\n%U\n")
-                     ("cs" "shows" entry
-                      (file+headline (lambda () (concat org-directory "/content.org")) "Dizi")
-                      "* BACK %? :show:\n%U\n")
-                     ("ca" "anime" entry
-                      (file+headline (lambda () (concat org-directory "/content.org")) "Anime")
-                      "* BACK %? :anime:\n%U\n")
-                     ("cg" "games" entry
-                      (file+headline (lambda () (concat org-directory "/content.org")) "Oyun")
-                      "* BACK %? :game:\n%U\n")
-
-                     ("u" "Update Current Clocked Heading" text
-                      (clock)
-                      "%?"
-                      :unnarrowed t)
-
-                     ("k" "knowledge")
-                     ("kp" "project" entry
-                      (file+olp (lambda () (concat org-directory "/archive.org")) "Projeler")
-                      "* %?\nEklenme tarihi %U\n")
-                     ("kk" "knowledge" entry
-                      (file+olp (lambda () (concat org-directory "/archive.org")) "Bilgiler")
-                      "* %? %^g\nEklenme tarihi %U\n")
-                     ("ki" "ideas" entry
-                      (file+olp (lambda () (concat org-directory "/archive.org")) "Proje Fikirleri")
-                      "* %?\nEklenme tarihi %U\n")
-                     ("kt" "thoughts" entry
-                      (file+olp (lambda () (concat org-directory "/archive.org")) "Düşünceler")
-                      "* %?\nEklenme tarihi %U\n")
-
-
                      ("j" "journal")
                      ("jd" "daily" entry
-                      (file+olp (lambda () (concat org-directory "/mylife.org")) "Ajanda")
-                      "* %<%Y-%m-%d %A> (Week %<%V> | %<%B>)\n** Retrospektif\n- [ ] %?\n** Yapılacaklar\n- [ ] ")
+                      (file+olp (lambda () (concat org-directory "/home.org")) "Ajanda")
+                      "* %<%Y-%m-%d %A> (Week %<%V> | %<%B>)\n** Retrospektif\n***  %?\n** Yapılacaklar\n***  ")
 
                      ("jw" "weekly" entry
-                      (file+olp (lambda () (concat org-directory "/archive.org")) "Haftalık Retrospektif")
-                      "* Week %<%V> | %<%B>\n** Retrospektif\n- [ ] %?\n** Yapılacaklar\n- [ ] \n** Günler :REFILE:")
+                      (file+olp (lambda () (concat org-directory "/journal.org")) "Haftalık Retrospektif")
+                      "* Week %<%V> | %<%B>\n** Retrospektif\n***  %?\n** Yapılacaklar :REFILE:\n***  \n** Günler :REFILE:")
 
                      ("jm" "monthly" entry
-                      (file+olp (lambda () (concat org-directory "/archive.org")) "Aylık Retrospektif")
-                      "* %<%B> | %<%Y>\n** Retrospektif\n- [ ] %?\n** Yapılacaklar\n- [ ] \n** Haftalar :REFILE:")
+                      (file+olp (lambda () (concat org-directory "/journal.org")) "Aylık Retrospektif")
+                      "* %<%B> | %<%Y>\n** Retrospektif\n***  %?\n** Yapılacaklar :REFILE:\n***  \n** Haftalar :REFILE:")
 
                      ("jy" "yearly" entry
-                      (file+olp (lambda () (concat org-directory "/archive.org")) "Yıllık Retrospektif")
-                      "* %<%Y>\n** Retrospektif\n- [ ] %?\n** Yapılacaklar\n- [ ] \n** Aylar :REFILE:")
+                      (file+olp (lambda () (concat org-directory "/journal.org")) "Yıllık Retrospektif")
+                      "* %<%Y>\n** Retrospektif\n***  %?\n** Yapılacaklar\n***  \n** Aylar :REFILE:")
                      ))
 
             (setq org-refile-targets
-                  '(("journal.org" :tag . "REFILE")
-                    ("mylife.org" :tag . "REFILE")
-                    ("archive.org" :tag . "REFILE")
-                    ("content.org" :tag . "REFILE")
-                    ("done.org" :tag . "REFILE")
-                    ("notes.org" :tag . "REFILE")
-                    ("project.org" :tag . "REFILE")))
+                  (mapcar (lambda (file)
+                            (cons file '(:tag . "REFILE")))
+                          (directory-files-recursively
+                           (expand-file-name org-directory)
+                           "\\.org$")))
+
             (setq org-refile-use-outline-path 'file)
             (setq org-outline-path-complete-in-steps nil)
 
@@ -435,9 +397,7 @@
                       ((org-agenda-files
                          (remove
                            (concat org-directory "/habits.org")
-                           (remove
-                             (concat org-directory "/content.org")
-                             org-agenda-files))))
+                           )))
 
                       )
                      )
