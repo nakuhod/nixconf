@@ -5,7 +5,6 @@ in
 {
 
   programs.git.enable = true;
-  programs.bash.enable = true;
   programs.ssh.startAgent = true;
   programs.foot = {
     enable = true;
@@ -29,6 +28,7 @@ in
     nixos.includeAllModules = true;
   };
   environment.systemPackages = with pkgs; [
+    bash
     btop
     cliphist
     curl

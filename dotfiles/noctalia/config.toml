@@ -22,12 +22,13 @@ order = [ "default" ]
     background_opacity = 1.0
     border = "outline"
     border_width = 0.0
-    capsule = true
+    capsule = false
     capsule_fill = "surface_variant"
     capsule_group = []
-    capsule_opacity = 0.5
+    capsule_opacity = 1.0
     capsule_padding = 6.0
-    capsule_thickness = 0.64999997615814209
+    capsule_radius = 0.0
+    capsule_thickness = 0.75999999046325684
     center = [ "workspaces" ]
     concave_edge_corners = true
     contact_shadow = false
@@ -43,17 +44,17 @@ order = [ "default" ]
     padding = 14
     panel_overlap = 1
     position = "top"
-    radius = 4
-    radius_bottom_left = 4
-    radius_bottom_right = 4
-    radius_top_left = 4
-    radius_top_right = 4
+    radius = 0
+    radius_bottom_left = 0
+    radius_bottom_right = 0
+    radius_top_left = 0
+    radius_top_right = 0
     reserve_space = true
     scale = 1.1000000238418579
     shadow = true
     show_on_workspace_switch = true
     smart_auto_hide = false
-    start = [ "clock", "spacer_left", "screenshot", "caffeine", "bar" ]
+    start = [ "clock", "spacer_left", "screenshot", "caffeine" ]
     thickness = 30
     widget_spacing = 8
 
@@ -83,7 +84,7 @@ sidebar_section = "none"
 width = 800
 
     [control_center.calendar]
-    show_events_card = false
+    show_events_card = true
     show_week_numbers = true
 
     [[control_center.shortcuts]]
@@ -156,7 +157,7 @@ smart_auto_hide = false
 [hooks]
 battery_charging = []
 battery_discharging = []
-battery_percentage_changed = [ "~/.config/noctalia/hooks/battery-treshold.sh" ]
+battery_percentage_changed = []
 battery_plugged = []
 bluetooth_disabled = []
 bluetooth_enabled = []
@@ -372,7 +373,7 @@ panel_placement = "floating"
 
 [plugins]
 auto_update = "none"
-enabled = [ "noctalia/timer" ]
+enabled = []
 
     [[plugins.source]]
     enabled = true
@@ -391,17 +392,17 @@ app_icon_colorize = false
 avatar_path = "/home/dogukan/pictures/wallpapers/light/monkey_pier.jpg"
 button_borders = true
 card_borders = true
-clipboard_auto_paste = "auto"
+clipboard_auto_paste = "off"
 clipboard_confirm_clear_history = true
 clipboard_enabled = true
 clipboard_history_max_entries = 9999
 clipboard_image_action_command = "nsxiv {path}"
 clipboard_keep_from_closed_apps = true
-corner_radius_scale = 0.5
+corner_radius_scale = 0.0
 date_format = "%A, %x"
 disable_mipmaps = false
 external_ip_enabled = false
-font_family = "CaskaydiaMono Nerd Font Mono"
+font_family = "sans-serif"
 input_borders = true
 lang = "en"
 launch_apps_as_systemd_services = false
@@ -423,7 +424,7 @@ telemetry_enabled = false
 time_format = "{:%H:%M}"
 
     [shell.animation]
-    enabled = true
+    enabled = false
     speed = 1.0
 
     [shell.greeter_sync]
@@ -647,10 +648,6 @@ max_length = 260.0
 min_length = 80.0
 title_scroll = "none"
 type = "active_window"
-
-[widget.bar]
-show_idle_on_horizontal = false
-type = "noctalia/timer:bar"
 
 [widget.clock]
 type = "clock"

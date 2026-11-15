@@ -23,3 +23,5 @@ require("lazy").setup({
         { import = "plugins" },
     },
 })
+
+vim.cmd.packadd("nvim.undotree")

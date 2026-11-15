@@ -1,0 +1,36 @@
+diff --git a/config.h b/config.h
+index 07a3233..760c37a 100644
+--- a/config.h
++++ b/config.h
+@@ -25,7 +25,7 @@ static const char* ICONS = "nerdicons";
+ 
+ /* 1 means you'll be asked to continue
+  * after each work cycle, 0 means not */
+-static const int AUTOSTARTWORK = 1;
++static const int AUTOSTARTWORK = 0;
+ 
+ /* 1 means you'll be asked to continue
+  * after each pause, 0 means not */
+@@ -59,18 +59,18 @@ static const int THUNDERVOLUME = 50;
+ static const int BGTRANSPARENCY = 1;
+ 
+ /* amount of pomodoros from 1 to 8 (default: 4) */
+-static const int POMODOROS = 4;
++static const int POMODOROS = 3;
+ 
+ /* time for a work stage from 5 to 75 (default: 25)
+  * (increment it by 5 by 5)*/
+-static const int WORKTIME = 25;
++static const int WORKTIME = 50;
+ 
+ /* time for the short pause from 1 to 10 (default: 5) */
+-static const int SHORTPAUSE = 5;
++static const int SHORTPAUSE = 10;
+ 
+ /* time for the long pause from 5 to 60 (default: 30)
+  * (increment it by 5 by 5)*/
+-static const int LONGPAUSE = 30;
++static const int LONGPAUSE = 60;
+ 
+ /* 1 means work log on, 0 off
+  * Note: if you turn it off the app will not resume

@@ -13,6 +13,7 @@ let
     hypr = "hypr";
     nvim = "nvim";
     noctalia = "noctalia";
+    xfce4 = "xfce4";
   };
 in
 {

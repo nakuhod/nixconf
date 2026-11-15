@@ -31,6 +31,11 @@
     obs-studio
     openvpn
     ungoogled-chromium
+    (tomato-c.overrideAttrs (old: {
+      patches = (old.patches or [ ]) ++ [
+        ./patches/tomato-config.patch
+      ];
+    }))
     (emacsWithPackagesFromUsePackage {
       package = pkgs.emacs;
       config = ../dotfiles/emacs/config.el;

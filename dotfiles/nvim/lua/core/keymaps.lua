@@ -57,18 +57,20 @@ end, { desc = "Copy diagnostic message" })
 -- Select all file
 vim.keymap.set("n", "vga", "ggVG", opts)
 
+vim.keymap.set("n", "'", "`", { remap = false, desc = "Jump to exact mark position" })
+
 for _, mark in ipairs({
-  "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
-  "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
-  "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
-  "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+    "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
+    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+    "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
 }) do
-  vim.keymap.set("n", "m" .. mark, function()
-    vim.cmd("normal! m" .. mark)
-    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-    local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
-    print(("Mark %s set in %s at position %d,%d"):format(mark,filename, row, col + 1))
-  end)
+    vim.keymap.set("n", "m" .. mark, function()
+        vim.cmd("normal! m" .. mark)
+        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+        local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
+        print(("Mark %s set in %s at position %d,%d"):format(mark, filename, row, col + 1))
+    end)
 end
 
 -- Copy file path with line number into clipboard
@@ -77,6 +79,16 @@ vim.keymap.set('n', '<leader>n', function()
     vim.fn.setreg('+', s)
     print('Copied: ' .. s)
 end, { desc = 'Copy path:line' })
+
+vim.keymap.set("n", "<leader>u", function()
+    require("undotree").open({
+        command = "40vnew",
+        title = function(bufnr)
+            local name = vim.api.nvim_buf_get_name(bufnr)
+            return name ~= "" and ("Undo Tree: " .. vim.fn.fnamemodify(name, ":t")) or "Undo Tree"
+        end,
+    })
+end, { desc = "Toggle undo tree" })
 
 -- Open oil.nvim file explorer as floating window
 vim.keymap.set("n", "`", function()

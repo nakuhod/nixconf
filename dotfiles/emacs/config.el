@@ -36,17 +36,14 @@
 (setq browse-url-generic-program "xdg-open") ; open URLs in the default web browser (not EWW) using XDG's util
 (setq backup-directory-alist
       `(("." . ,(expand-file-name "backups/" user-emacs-directory))))
-;; Turkish ASCII abbreviations
-(load (expand-file-name "turkish-abbrevs.el"
-                        "~/nixconf/dotfiles/emacs/"))
 
-(defun my/org-turkish-abbrevs ()
-  "Enable Turkish ASCII abbreviations in Org buffers."
-  (setq-local abbrev-mode t)
-  (setq-local local-abbrev-table turkish-ascii-abbrev-table))
-
-(add-hook 'org-mode-hook #'my/org-turkish-abbrevs)
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Turkish deasciifier
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package turkish
+  :ensure t
+  :config
+  (turkish-mode 1))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Theme
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -322,12 +319,14 @@
                '(org-level-7 ((t (:foreground "Ivory" ))))
                '(org-level-8 ((t (:foreground "Ivory" )))))
 
-
+             ;; Misc
+             (turkish-mode 1)
              ;; Org keybinds
              (global-set-key (kbd "C-c c") #'org-capture)
              (global-set-key (kbd "C-c a") #'org-agenda)
              (global-set-key (kbd "C-c t") #'org-todo)
-             (global-set-key (kbd "C-c u") #'unexpand-abbrev)
+             (global-set-key (kbd "C-c w") #'turkish-toggle-last-word)
+             (global-set-key (kbd "C-c x") #'turkish-toggle-accent)
 
 
              ;; Org Capure Templates
@@ -340,7 +339,7 @@
 
                      ("jw" "weekly" entry
                       (file+olp (lambda () (concat org-directory "/journal.org")) "Haftalık Retrospektif")
-                      "* Week %<%V> | %<%B>\n** Retrospektif\n***  %?\n** Yapılacaklar :REFILE:\n***  \n** Günler :REFILE:")
+                      "* Week %<%V> | %<%B> %<%Y>\n** Retrospektif\n***  %?\n** Yapılacaklar :REFILE:\n***  \n** Günler :REFILE:")
 
                      ("jm" "monthly" entry
                       (file+olp (lambda () (concat org-directory "/journal.org")) "Aylık Retrospektif")
