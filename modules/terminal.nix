@@ -58,7 +58,7 @@ in
   environment.variables = {
     EDITOR = "nvim";
     TERMINAL = "footclient";
-    BROWSER = "firefox";
+    BROWSER = "librewolf";
     MANPAGER = "nvim +Man!";
     KEYTIMEOUT = "1";
     VI_MODE_SET_CURSOR = "true";

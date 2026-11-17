@@ -3,10 +3,36 @@
 hl.bind(main_mod .. " + F", hl.dsp.layout("colresize 1"))
 hl.bind(main_mod .. " + SHIFT + V", hl.dsp.layout("colresize 0.5"))
 
+--- windows
 hl.bind(main_mod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }))
 hl.bind(main_mod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(main_mod .. " + SHIFT + Q", hl.dsp.exit())
 hl.bind(main_mod .. " + C", hl.dsp.window.close())
+
+--- WM specific
+hl.bind(main_mod .. " + SHIFT + Q", hl.dsp.exit())
+
+hl.bind(main_mod .. " + SHIFT + F11", function()
+    hl.notification.create({
+        text = "Turning off monitors",
+        timeout = 500,
+        icon = "warning"
+    })
+    hl.timer(function()
+        hl.dispatch(hl.dsp.dpms({ action = "disable" }))
+    end, { timeout = 500, type = "oneshot" })
+end)
+
+hl.bind(main_mod .. " + SHIFT + F12", function()
+    hl.notification.create({
+        text = "Turning on monitors",
+        timeout = 5000,
+        icon = "info"
+    })
+    hl.timer(function()
+        hl.dispatch(hl.dsp.dpms({ action = "enable" }))
+    end, { timeout = 500, type = "oneshot" })
+end)
+
 
 -- exec_cmd keybindings
 hl.bind(main_mod .. " + RETURN", hl.dsp.exec_cmd(terminal))

@@ -393,10 +393,6 @@
                        (tags "TODO=\"KILL\""
                              ((org-agenda-overriding-header "KILL (canceled, abandoned)")))
                        )
-                      ((org-agenda-files
-                         (remove
-                           (concat org-directory "/habits.org")
-                           )))
 
                       )
                      )

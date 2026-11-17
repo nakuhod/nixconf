@@ -22,9 +22,10 @@
     blanket
     brave
     burpsuite
+    firefox
     gimp
-    kdePackages.okular
     kdePackages.kclock
+    kdePackages.okular
     monero-gui
     mpv
     nsxiv

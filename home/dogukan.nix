@@ -18,13 +18,12 @@ let
 in
 {
   imports = [
-    ../modules/home-manager/firefox.nix
+    ../modules/home-manager/librewolf.nix
   ];
   home.username = "dogukan";
   home.homeDirectory = "/home/dogukan";
   home.stateVersion = "26.05";
 
-  programs.firefox.enable = true;
   programs.neovim.defaultEditor = true;
   programs.tmux = {
     enable = true;

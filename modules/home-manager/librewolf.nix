@@ -1,17 +1,18 @@
 {
   pkgs,
-  inputs,
-  system,
   ...
 }:
 
 {
-  programs.firefox = {
+  programs.librewolf = {
     enable = true;
-    profiles.dogukan = {
+    package = pkgs.librewolf-bin;
+
+    profiles.default = {
       search = {
         force = true;
         default = "ddg";
+
         engines = {
           google = {
             urls = [
@@ -102,40 +103,21 @@
       };
 
       settings = {
-        "dom.security.https_only_mode" = true;
-        "browser.download.panel.shown" = true;
-        "browser.bookmarks.addedImportButton" = false;
-        "identity.fxaccounts.enabled" = false;
-        "signon.rememberSignons" = false;
-        "sidebar.verticalTabs" = true;
-        "general.autoScroll" = true;
-        "layout.css.prefers-color-scheme.content-override" = 0;
-        "extensions.activeThemeID" = "nova-ash@mozilla.org";
         "full-screen-api.warning.timeout" = 0;
         "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
-        "browser.toolbars.bookmarks.visibility" = "always";
-        "browser.uiCustomization.state" = ''
-          {"placements":{"widget-overflow-fixed-list":[],"unified-extensions-area":["sponsorblocker_ajay_app-browser-action"],
-                            "nav-bar":["reset-pbm-toolbar-button","back-button","forward-button","stop-reload-button","home-button","sidebar-button","urlbar-container","vertical-spacer","ublock0_raymondhill_net-browser-action","_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action","addon_darkreader_org-browser-action","unified-extensions-button","downloads-button"]
-                                ,"toolbar-menubar":["menubar-items"],
-                            "TabsToolbar":[],
-                            "vertical-tabs":["tabbrowser-tabs"],
-                            "PersonalToolbar":["import-button","personal-bookmarks"]},
-              "seen":["reset-pbm-toolbar-button","developer-button","screenshot-button","_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action","addon_darkreader_org-browser-action","sponsorblocker_ajay_app-browser-action","ublock0_raymondhill_net-browser-action"],
-              "dirtyAreaCache":["nav-bar","TabsToolbar","vertical-tabs","unified-extensions-area","toolbar-menubar","PersonalToolbar"],
-              "currentVersion":24,
-              "newElementCount":4}
-        '';
+        "general.autoScroll" = true;
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        "browser.toolbars.bookmarks.visibility" = "never";
       };
 
-      extensions.packages = with inputs.firefox-addons.packages.${system}; [
-        bitwarden
-        ublock-origin
-        sponsorblock
-        darkreader
-        foxyproxy-standard
-      ];
+      userChrome = ''
+        #TabsToolbar { display: none !important; }
+        #sidebar-header { display: none !important; }
+        #sidebar-panel-header { display: none !important; }
+        #sidebar-box { padding-inline-start: 0px !important; }
 
+        * { border-radius: 0px !important; }
+      '';
     };
   };
 }

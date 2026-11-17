@@ -1,7 +1,8 @@
 main_mod = "SUPER"
 noctalia_ipc = "noctalia msg "
 
-browser = "firefox"
+browser = "librewolf"
+browser_extra = "chromium-browser"
 terminal = "footclient"
 created_on_empty_terminal = "footclient --app-id=footclient_created_on_empty"
 app_launcher = noctalia_ipc .. "panel-toggle launcher"

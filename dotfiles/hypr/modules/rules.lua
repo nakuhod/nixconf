@@ -38,8 +38,8 @@ hl.window_rule({
 })
 
 local whole_column_classes = table.concat({
-    "firefox",
-    "chromium-browser",
+    browser,
+    browser_extra,
 }, "|")
 hl.window_rule({
     name = "WholeColumnApps",
