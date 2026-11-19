@@ -1,12 +1,5 @@
 { pkgs, ... }:
 {
-  programs.wireshark = {
-    enable = true;
-    dumpcap.enable = true;
-    usbmon.enable = true;
-    package = pkgs.wireshark;
-  };
-
   programs.thunar.enable = true;
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
@@ -20,8 +13,6 @@
   environment.systemPackages = with pkgs; [
     awww
     blanket
-    brave
-    burpsuite
     firefox
     gimp
     kdePackages.kclock

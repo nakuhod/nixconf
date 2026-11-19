@@ -651,6 +651,7 @@ type = "active_window"
 
 [widget.clock]
 type = "clock"
+format = "{:%a %e%t%H:%M}"
 
     [widget.clock.actions]
     middle = "none"
